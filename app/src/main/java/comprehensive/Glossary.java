@@ -49,10 +49,29 @@ public class Glossary {
     }
 
     //Gets the POS and Def for a word
-    public ArrayList<WordJuice> getJuice(String word) throws IllegalArgumentException{
+    public ArrayList<WordJuice> getWord(String word) throws IllegalArgumentException{
         if(glossary.get(word) == null){
             throw new IllegalArgumentException("Word does not exsist");
         }
         return glossary.get(word);
     }
+
+    //Gets word in range
+    public ArrayList<String> getWordsInRange(String word1, String word2){
+        ArrayList<String> words = new ArrayList<>();
+
+        return glossary.subMap(word1, word2);
+    } 
+
+    //Gets first word
+    public String getFirstWord(String word){
+        return glossary.firstKey();
+    }
+
+    //Gets last word
+    public String getLastWord(String word){
+        return glossary.lastKey();
+    }
+
+
 }
