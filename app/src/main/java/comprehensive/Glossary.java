@@ -47,4 +47,12 @@ public class Glossary {
         definitionCount++;
         posUsed.add(pos);
     }
+
+    //Gets the POS and Def for a word
+    public ArrayList<WordJuice> getJuice(String word) throws IllegalArgumentException{
+        if(glossary.get(word) == null){
+            throw new IllegalArgumentException("Word does not exsist");
+        }
+        return glossary.get(word);
+    }
 }
