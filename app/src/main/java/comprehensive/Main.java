@@ -3,8 +3,49 @@ package comprehensive;
 public class Main {
     public static void main(String[] args) {
         Glossary glossary = new Glossary(args[0]);
-        printMenu();
-        int userIn = readNum();
+        boolean running = true;
+        while(running){
+            printMenu();
+            int userIn = readNum();
+            switch (userIn) {
+                //get metadata
+                case 1:    
+                    break;
+                //get words in range
+                case 2:
+                    break;
+                //get word    
+                case 3:
+                    break;
+                //get first word
+                case 4:
+                    break;
+                //get last word    
+                case 5:
+                    break;
+                //get parts of speach
+                case 6:
+                    break;
+                //update definition
+                case 7:
+                    break;
+                //delete definition
+                case 8:
+                    break;
+                //Add new definition
+                case 9:
+                    break;
+                //save dictionary
+                case 10:
+                    break;
+                //exit
+                case 11:
+                    running = false;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     // helper to get and read user inputs as Strings
