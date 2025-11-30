@@ -31,8 +31,9 @@ public enum POS {
                 return POS.CONJ;
             case "INTERJ":
                 return POS.INTERJ;
-            default:
-                throw new IllegalArgumentException("The POS you have is not valid!");
+                default:
+                throw new IllegalArgumentException("The POS is not a valid POS!");
+                //TODO: handle this exception in main 
         }
 
     }

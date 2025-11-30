@@ -52,6 +52,7 @@ public class Glossary {
     //Gets the POS and Def for a word
     public ArrayList<WordJuice> getWord(String word) throws IllegalArgumentException{
         if(glossary.get(word) == null){
+            //TODO:handle this exception in main
             throw new IllegalArgumentException("Word does not exsist");
         }
         return glossary.get(word);

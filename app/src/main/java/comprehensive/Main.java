@@ -4,15 +4,26 @@ public class Main {
     public static void main(String[] args) {
         Glossary glossary = new Glossary(args[0]);
         printMenu();
+        int userIn = readNum();
     }
 
-    // helper to get and read user input
+    // helper to get and read user inputs as Strings
+    @SuppressWarnings("resource")
     private static String readLine() {
+        //DON'T CLOSE SCANNER CAUSES BUGS
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String line = scanner.nextLine();
-        scanner.close();
         return line;
 
+    }
+
+    // helper to get and read user inputs as ints
+    @SuppressWarnings("resource")
+    private static int readNum() {
+        //DON'T CLOSE SCANNER CAUSES BUGS
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        int num = scanner.nextInt();
+        return num;
     }
 
     //menu
