@@ -6,7 +6,7 @@ import java.util.TreeMap;
 /**
  * A treemap that has a word for the key and an array list of word juice for the value
  * @author Joshua Varughese
- * @version 11/29/26
+ * @version 11/29/25
  */
 public class Glossary {
     //Metadata

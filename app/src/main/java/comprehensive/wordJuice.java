@@ -2,7 +2,7 @@ package comprehensive;
 /**
  * Every word has WordJuice this stores the POS and Definition combo.
  * @Author Joshua Varughese
- * @version 11/29/26
+ * @version 11/29/25
  */
 public class WordJuice {
     private POS pos;

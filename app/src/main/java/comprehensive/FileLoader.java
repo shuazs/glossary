@@ -8,7 +8,7 @@ import java.util.Scanner;
  * Reads the text file and turns it into a glossary
  * 
  * @author Joshua Varughese
- * @version 11/29/26
+ * @version 11/29/25
  */
 public class FileLoader {
 

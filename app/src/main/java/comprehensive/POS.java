@@ -2,7 +2,7 @@ package comprehensive;
 /**
  * THE POS as an ENUM
  * @author Joshua Varughese
- * @version 11/29/26
+ * @version 11/29/25
  */
 public enum POS {
     NOUN, VERB, ADJ, ADV, PRON, PREP, CONJ, INTERJ;
