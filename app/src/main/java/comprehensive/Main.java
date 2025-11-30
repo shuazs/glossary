@@ -3,7 +3,7 @@ package comprehensive;
 public class Main {
     public static void main(String[] args) {
         Glossary glossary = new Glossary(args[0]);
-
+        printMenu();
     }
 
     // helper to get and read user input
