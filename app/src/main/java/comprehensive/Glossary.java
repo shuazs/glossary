@@ -91,6 +91,7 @@ public class Glossary {
         return this.definitionCount;
     }
 
+    //TODO:format in main avg def per word to 3 dec 
     //format in main
     public float getAvgDefPerWord(){
         if(wordCount == 0){
