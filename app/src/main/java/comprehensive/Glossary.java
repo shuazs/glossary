@@ -48,6 +48,7 @@ public class Glossary {
         posUsed.add(pos);
     }
 
+    //3
     //Gets the POS and Def for a word
     public ArrayList<WordJuice> getWord(String word) throws IllegalArgumentException{
         if(glossary.get(word) == null){
@@ -56,22 +57,50 @@ public class Glossary {
         return glossary.get(word);
     }
 
+    //2
     //Gets word in range
     public ArrayList<String> getWordsInRange(String word1, String word2){
         ArrayList<String> words = new ArrayList<>();
 
-        return glossary.subMap(word1, word2);
+        //iterate over the keys in the range and put them in word
+        for(String key:glossary.subMap(word1, true, word2, true).keySet()){
+            words.add(key);
+        }
+        return words;
     } 
-
+    
+    //4
     //Gets first word
-    public String getFirstWord(String word){
+    public String getFirstWord(){
         return glossary.firstKey();
     }
 
+    //5
     //Gets last word
-    public String getLastWord(String word){
+    public String getLastWord(){
         return glossary.lastKey();
     }
 
+    //1
+    //Getters for option 1
+    public int getWordCount(){
+        return this.wordCount;
+    }
+
+    public int getDefCount(){
+        return this.definitionCount;
+    }
+
+    //format in main
+    public float getAvgDefPerWord(){
+        if(wordCount == 0){
+            return 0;
+        }
+        return (float) this.definitionCount/this.wordCount;
+    }
+
+    public HashSet<POS> getPosUsed(){
+        return this.posUsed;
+    }
 
 }
