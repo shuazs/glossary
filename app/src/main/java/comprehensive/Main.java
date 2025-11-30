@@ -1,75 +1,70 @@
 package comprehensive;
 
+import java.util.InputMismatchException;
+
 public class Main {
     public static void main(String[] args) {
         Glossary glossary = new Glossary(args[0]);
         boolean running = true;
-        while(running){
+        while (running) {
             printMenu();
             int userIn = readNum();
             switch (userIn) {
-                //get metadata
-                case 1:    
+                // get metadata
+                case 1:
                     break;
-                //get words in range
+                // get words in range
                 case 2:
                     break;
-                //get word    
+                // get word
                 case 3:
+                    Options.getWordMain(glossary);
                     break;
-                //get first word
+                // get first word
                 case 4:
                     break;
-                //get last word    
+                // get last word
                 case 5:
                     break;
-                //get parts of speach
+                // get parts of speach
                 case 6:
                     break;
-                //update definition
+                // update definition
                 case 7:
                     break;
-                //delete definition
+                // delete definition
                 case 8:
                     break;
-                //Add new definition
+                // Add new definition
                 case 9:
                     break;
-                //save dictionary
+                // save dictionary
                 case 10:
                     break;
-                //exit
+                // exit
                 case 11:
                     running = false;
                     break;
                 default:
+                    System.out.println("Invalid input");
                     break;
             }
         }
     }
 
-    // helper to get and read user inputs as Strings
-    @SuppressWarnings("resource")
-    private static String readLine() {
-        //DON'T CLOSE SCANNER CAUSES BUGS
-        java.util.Scanner scanner = new java.util.Scanner(System.in);
-        String line = scanner.nextLine();
-        return line;
-
-    }
-
     // helper to get and read user inputs as ints
     @SuppressWarnings("resource")
     private static int readNum() {
-        //DON'T CLOSE SCANNER CAUSES BUGS
+        // DON'T CLOSE SCANNER CAUSES BUGS
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         int num = scanner.nextInt();
+        // TODO: test if this is needed
         //consume any extra stuff
-        //scanner.nextLine();
+        scanner.nextLine();
         return num;
     }
 
-    //menu
+    // menu
     private static void printMenu() {
         System.out.println("Main menu");
         System.out.println("1.  Get metadata");
