@@ -23,6 +23,8 @@ public class Main {
         //DON'T CLOSE SCANNER CAUSES BUGS
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         int num = scanner.nextInt();
+        //consume any extra stuff
+        //scanner.nextLine();
         return num;
     }
 
