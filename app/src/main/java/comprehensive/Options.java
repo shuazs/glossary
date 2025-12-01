@@ -1,12 +1,13 @@
 package comprehensive;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Set;
 
 /**
  * The larger menu options will be implemented here to keep main.java clean
- * 
+ * All option methods are private or package private
  * @author Joshua Varughese
  * @version 11/30/25
  */
@@ -23,7 +24,7 @@ public class Options {
      * 
      * @param glossary
      */
-    public static void getMetaDataMain(Glossary glossary) {
+    static void getMetaDataMain(Glossary glossary) {
         System.out.println("words: " + glossary.getWordCount());
         System.out.println("definitions: " + glossary.getDefCount());
         System.out.print("definitions per word: ");
@@ -41,7 +42,7 @@ public class Options {
      * 
      * @param glossary
      */
-    public static void getWordsInRangeMain(Glossary glossary) {
+    static void getWordsInRangeMain(Glossary glossary) {
         System.out.print("Starting word: ");
         String word1 = readLine();
         System.out.println("");
@@ -62,7 +63,7 @@ public class Options {
      * 
      * @param glossary
      */
-    public static void getWordMain(Glossary glossary) {
+    static void getWordMain(Glossary glossary) {
         System.out.print("Select a word: ");
         String userWord = readLine();
         try {
@@ -97,7 +98,7 @@ public class Options {
      * 
      * @param glossary
      */
-    public static void getWordPosMain(Glossary glossary) {
+    static void getWordPosMain(Glossary glossary) {
         System.out.print("Select a word: ");
         String userWord = readLine();
         try {
@@ -136,7 +137,7 @@ public class Options {
      * 
      * @param glossary
      */
-    public static void updateDefMain(Glossary glossary) {
+    static void updateDefMain(Glossary glossary) {
         System.out.print("Select a word: ");
         String userWord = readLine();
         try {
@@ -181,7 +182,7 @@ public class Options {
      * 
      * @param glossary
      */
-    public static void deleteDefMain(Glossary glossary) {
+    static void deleteDefMain(Glossary glossary) {
         System.out.print("Select a word: ");
         String userWord = readLine();
         try {
@@ -228,7 +229,7 @@ public class Options {
      * 
      * @param glossary
      */
-    public static void addDefMain(Glossary glossary) {
+    static void addDefMain(Glossary glossary) {
         //txt to pos throws an error
         try {
             System.out.print("Type a word: ");
@@ -244,7 +245,17 @@ public class Options {
             System.out.println("Invalid POS. Return to main menu");
             return;
         }
+    }
 
+    /**
+     * Option 10 write to the file
+     * @param glossary
+     * 
+     */
+    static void saveMain(Glossary glossary){
+        System.out.print("Enter filename with path: ");
+        String file = readLine();
+        FileLoader.unload(file, glossary);
     }
 
     /**
@@ -254,7 +265,7 @@ public class Options {
      * @param glossary
      * @param word
      */
-    public static void getWordMain(Glossary glossary, String word) {
+    static void getWordMain(Glossary glossary, String word) {
         // store the values
         ArrayList<WordJuice> w = glossary.getWord(word);
 

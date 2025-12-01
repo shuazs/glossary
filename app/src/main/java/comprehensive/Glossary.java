@@ -136,4 +136,9 @@ public class Glossary {
         }
     }
 
+    //package private getter for FileLoader
+    TreeMap<String, ArrayList<WordJuice>> getGlossary(){
+        return this.glossary;
+    }
+
 }

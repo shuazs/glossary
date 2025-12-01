@@ -23,7 +23,7 @@ public class WordJuice {
     }
 
     //setter
-    public void setDef(String def){
+    void setDef(String def){
         this.definition = def;
     }
 }

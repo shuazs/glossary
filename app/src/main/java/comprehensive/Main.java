@@ -49,6 +49,7 @@ public class Main {
                     break;
                 // save dictionary
                 case 10:
+                    Options.saveMain(glossary);
                     break;
                 // exit
                 case 11:
