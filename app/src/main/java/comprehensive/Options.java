@@ -2,6 +2,7 @@ package comprehensive;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Set;
 
 /**
  * The larger menu options will be implemented here to keep main.java clean
@@ -104,20 +105,71 @@ public class Options {
             // sort them by POS lexographically
             w.sort(Comparator
                     .comparing((WordJuice wj) -> wj.getPos().toString()));
-
+            
+            String lastPos = null;
             // print
             System.out.println(userWord);
             System.out.println("");
             for (WordJuice wj : w) {
                 String pos = wj.getPos().toString().toLowerCase();
-                System.out.println(pos);
+                //no dups
+                if(!pos.equals(lastPos)){
+                    System.out.println(pos);
+                    lastPos = pos;
+                }
+                
             }
 
             System.out.println("");
 
         } catch (IllegalArgumentException e) {
-            System.out.println("userWord is not in the glossary!");
+            System.out.println("Word is not in the glossary!");
         }
+    }
+
+    /**
+     * Find the word and return the definitions and an option to go back
+     * Based on selection update that def
+     * Option 7
+     * @param glossary
+     */
+    public static void updateDefMain(Glossary glossary){
+        System.out.print("Select a word: ");
+        String userWord = readLine();
+        try {
+            ArrayList<WordJuice> w = glossary.getWord(userWord);
+
+            // sort them by POS lexographically and then definition lexographically
+            w.sort(Comparator
+                    .comparing((WordJuice wj) -> wj.getPos().toString())
+                    .thenComparing((WordJuice wj) -> wj.getDef()));
+
+            //Print the defs as possible options
+            System.out.println("Definitions for " + userWord);
+            int i = 1;
+            for(WordJuice wj : w){
+                System.out.println(i + ". " + wj.getPos().toString().toLowerCase()
+                + "   " + wj.getDef());
+                i++;
+            }
+            System.out.println(i + ". Back to main menu");
+
+            //get user option and if its out of range then it must be the exit option
+            System.out.print("Select an option: ");
+            int userNum = readNum();
+            if(userNum < w.size()){
+                userNum--;
+                System.out.print("Type a new definition: ");
+                String newDef = readLine();
+                glossary.updateDef(userWord, userNum, newDef);
+            }
+            else{return;}
+
+            
+        } catch (IllegalArgumentException e) {
+            System.out.println("Word is not in the glossary!");
+        }
+
     }
 
     /**
@@ -156,7 +208,18 @@ public class Options {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String line = scanner.nextLine();
         System.out.println("");
-        return line.toLowerCase();
+        return line;
 
+    }
+
+    //TODO: Handle invalid inputs!
+    // helper to get and read user inputs as ints
+    @SuppressWarnings("resource")
+    private static int readNum() {
+        // DON'T CLOSE SCANNER CAUSES BUGS
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        int num = scanner.nextInt();
+        System.out.println("");
+        return num;
     }
 }

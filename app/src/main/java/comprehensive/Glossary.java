@@ -48,6 +48,13 @@ public class Glossary {
         posUsed.add(pos);
     }
 
+    //Update def for option 7
+    public void updateDef(String word, int index, String newDef){
+        ArrayList<WordJuice> w = glossary.get(word);
+        WordJuice wj = w.get(index);
+        wj.setDef(newDef);
+    }
+
     //3
     //Gets the POS and Def for a word
     public ArrayList<WordJuice> getWord(String word) throws IllegalArgumentException{

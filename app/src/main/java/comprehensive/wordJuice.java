@@ -21,4 +21,9 @@ public class WordJuice {
     public String getDef(){
         return this.definition;
     }
+
+    //setter
+    public void setDef(String def){
+        this.definition = def;
+    }
 }

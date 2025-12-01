@@ -37,6 +37,7 @@ public class Main {
                     break;
                 // update definition
                 case 7:
+                    Options.updateDefMain(glossary);
                     break;
                 // delete definition
                 case 8:
@@ -84,6 +85,6 @@ public class Main {
         System.out.println("10. Save dictionary");
         System.out.println("11. Quit");
         System.out.println(" ");
-        System.out.print("Select an option: "); // colon + space
+        System.out.print("Select an option: ");
     }
 }
