@@ -36,11 +36,12 @@ public class Options {
     }
 
     /**
-     * Get the words from blank to blank inclusive 
+     * Get the words from blank to blank inclusive
      * option 2
+     * 
      * @param glossary
      */
-    public static void getWordsInRangeMain(Glossary glossary){
+    public static void getWordsInRangeMain(Glossary glossary) {
         System.out.print("Starting word: ");
         String word1 = readLine();
         System.out.println("");
@@ -49,7 +50,7 @@ public class Options {
         System.out.println("");
         ArrayList<String> wordList = glossary.getWordsInRange(word1, word2);
         System.out.println("The words between " + word1 + " and " + word2 + " are:");
-        for(String word : wordList){
+        for (String word : wordList) {
             System.out.println(word);
         }
         System.out.println("");
@@ -88,14 +89,15 @@ public class Options {
         }
     }
 
-    //4 5 are implemented in main in a few lines
+    // 4 5 are implemented in main in a few lines
 
     /**
      * Gets a word and returns just the POS
      * option 6
+     * 
      * @param glossary
      */
-    public static void getWordPosMain(Glossary glossary){
+    public static void getWordPosMain(Glossary glossary) {
         System.out.print("Select a word: ");
         String userWord = readLine();
         try {
@@ -105,19 +107,19 @@ public class Options {
             // sort them by POS lexographically
             w.sort(Comparator
                     .comparing((WordJuice wj) -> wj.getPos().toString()));
-            
+
             String lastPos = null;
             // print
             System.out.println(userWord);
             System.out.println("");
             for (WordJuice wj : w) {
                 String pos = wj.getPos().toString().toLowerCase();
-                //no dups
-                if(!pos.equals(lastPos)){
+                // no dups
+                if (!pos.equals(lastPos)) {
                     System.out.println(pos);
                     lastPos = pos;
                 }
-                
+
             }
 
             System.out.println("");
@@ -131,9 +133,10 @@ public class Options {
      * Find the word and return the definitions and an option to go back
      * Based on selection update that def
      * Option 7
+     * 
      * @param glossary
      */
-    public static void updateDefMain(Glossary glossary){
+    public static void updateDefMain(Glossary glossary) {
         System.out.print("Select a word: ");
         String userWord = readLine();
         try {
@@ -144,30 +147,102 @@ public class Options {
                     .comparing((WordJuice wj) -> wj.getPos().toString())
                     .thenComparing((WordJuice wj) -> wj.getDef()));
 
-            //Print the defs as possible options
+            // Print the defs as possible options
             System.out.println("Definitions for " + userWord);
             int i = 1;
-            for(WordJuice wj : w){
+            for (WordJuice wj : w) {
                 System.out.println(i + ". " + wj.getPos().toString().toLowerCase()
-                + "   " + wj.getDef());
+                        + "   " + wj.getDef());
                 i++;
             }
             System.out.println(i + ". Back to main menu");
 
-            //get user option and if its out of range then it must be the exit option
+            // get user option and if its out of range then it must be the exit option
             System.out.print("Select an option: ");
             int userNum = readNum();
-            if(userNum < w.size()){
-                userNum--;
+            userNum--;
+            if (userNum < w.size() && userNum >= 0) {
                 System.out.print("Type a new definition: ");
                 String newDef = readLine();
                 glossary.updateDef(userWord, userNum, newDef);
+            } else {
+                return;
             }
-            else{return;}
 
-            
         } catch (IllegalArgumentException e) {
             System.out.println("Word is not in the glossary!");
+        }
+
+    }
+
+    /**
+     * Option 8
+     * Gives the definitions for word and then options to delete
+     * 
+     * @param glossary
+     */
+    public static void deleteDefMain(Glossary glossary) {
+        System.out.print("Select a word: ");
+        String userWord = readLine();
+        try {
+            ArrayList<WordJuice> w = glossary.getWord(userWord);
+
+            // sort them by POS lexographically and then definition lexographically
+            w.sort(Comparator
+                    .comparing((WordJuice wj) -> wj.getPos().toString())
+                    .thenComparing((WordJuice wj) -> wj.getDef()));
+
+            // Print the defs as possible options
+            System.out.println("Definitions for " + userWord);
+            int i = 1;
+            for (WordJuice wj : w) {
+                System.out.println(i + ". " + wj.getPos().toString().toLowerCase()
+                        + "   " + wj.getDef());
+                i++;
+            }
+            System.out.println(i + ". Back to main menu");
+
+            // get user option and if its out of range then it must be the exit option
+            System.out.print("Select an option: ");
+            int userNum = readNum();
+            userNum--;
+            if (userNum < w.size() && userNum >= 0) {
+                glossary.deleteDef(userWord, userNum);
+            } else {
+                return;
+            }
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Word is not in the glossary!");
+        }
+
+    }
+
+    /**
+     * Option 9 add a definition
+     * Ask for a word
+     * Present POS
+     * ask for pos
+     * ask for def
+     * add
+     * 
+     * @param glossary
+     */
+    public static void addDefMain(Glossary glossary) {
+        //txt to pos throws an error
+        try {
+            System.out.print("Type a word: ");
+            String word = readLine();
+            System.out.println("Valid parts of speach: noun, verb, adj, pron, prep, conj, interj");
+            System.out.print("Type a valid part of speach: ");
+            String posString = readLine();
+            POS pos = POS.txtToPOS(posString);
+            System.out.print("Type a definition: ");
+            String def = readLine();
+            glossary.addDef(word, pos, def);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid POS. Return to main menu");
+            return;
         }
 
     }
@@ -212,7 +287,7 @@ public class Options {
 
     }
 
-    //TODO: Handle invalid inputs!
+    // TODO: Handle invalid inputs!
     // helper to get and read user inputs as ints
     @SuppressWarnings("resource")
     private static int readNum() {

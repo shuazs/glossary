@@ -41,9 +41,11 @@ public class Main {
                     break;
                 // delete definition
                 case 8:
+                    Options.deleteDefMain(glossary);
                     break;
                 // Add new definition
                 case 9:
+                    Options.addDefMain(glossary);
                     break;
                 // save dictionary
                 case 10:

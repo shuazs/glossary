@@ -55,6 +55,20 @@ public class Glossary {
         wj.setDef(newDef);
     }
 
+    //delete def for option 8
+    public void deleteDef(String word, int index){
+        ArrayList<WordJuice> w = glossary.get(word);
+        w.remove(index);
+        this.definitionCount--;
+        if(w.size() == 0){
+            glossary.remove(word);
+            this.wordCount--;
+        }
+        
+        computePosUsed();
+    }
+
+
     //3
     //Gets the POS and Def for a word
     public ArrayList<WordJuice> getWord(String word) throws IllegalArgumentException{
@@ -110,6 +124,16 @@ public class Glossary {
 
     public HashSet<POS> getPosUsed(){
         return this.posUsed;
+    }
+
+    //Helper to recompute the POS used metadata
+    private void computePosUsed(){
+        posUsed.clear();
+        for(ArrayList<WordJuice> w : glossary.values()){
+            for(WordJuice wj : w){
+                posUsed.add(wj.getPos());
+            }
+        }
     }
 
 }
