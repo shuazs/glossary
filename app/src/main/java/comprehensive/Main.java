@@ -33,6 +33,7 @@ public class Main {
                     break;
                 // get parts of speach
                 case 6:
+                    Options.getWordPosMain(glossary);
                     break;
                 // update definition
                 case 7:

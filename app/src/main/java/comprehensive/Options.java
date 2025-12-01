@@ -74,6 +74,7 @@ public class Options {
 
             // print
             System.out.println(userWord);
+            System.out.println("");
             for (WordJuice wj : w) {
                 String pos = wj.getPos().toString().toLowerCase();
                 System.out.println(pos + ".  " + wj.getDef());
@@ -106,8 +107,10 @@ public class Options {
 
             // print
             System.out.println(userWord);
+            System.out.println("");
             for (WordJuice wj : w) {
                 String pos = wj.getPos().toString().toLowerCase();
+                System.out.println(pos);
             }
 
             System.out.println("");
@@ -134,6 +137,8 @@ public class Options {
                 .thenComparing((WordJuice wj) -> wj.getDef()));
 
         // print
+        System.out.println(word);
+        System.out.println("");
         for (WordJuice wj : w) {
             String pos = wj.getPos().toString().toLowerCase();
             System.out.println(pos + ".  " + wj.getDef());
@@ -150,6 +155,7 @@ public class Options {
         // DON'T CLOSE SCANNER CAUSES BUGS
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         String line = scanner.nextLine();
+        System.out.println("");
         return line.toLowerCase();
 
     }
