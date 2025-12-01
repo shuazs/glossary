@@ -15,7 +15,7 @@ public class Options {
      * Option 1
      * Words:
      * Defintions:
-     * Def per Word:
+     * Def per Word 3 dec places:
      * Parts of speach used as a num:
      * first word:
      * last word:
@@ -23,7 +23,15 @@ public class Options {
      * @param glossary
      */
     public static void getMetaDataMain(Glossary glossary) {
-
+        System.out.println("words: " + glossary.getWordCount());
+        System.out.println("definitions: " + glossary.getDefCount());
+        System.out.print("definitions per word: ");
+        System.out.printf("%.3f", glossary.getAvgDefPerWord());
+        System.out.println("");
+        System.out.println("parts of speach: " + glossary.getPosUsed().size());
+        System.out.println("first word: " + glossary.getFirstWord());
+        System.out.println("last word: " + glossary.getLastWord());
+        System.out.println("");
     }
 
     /**

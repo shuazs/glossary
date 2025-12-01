@@ -10,6 +10,7 @@ public class Main {
             switch (userIn) {
                 // get metadata
                 case 1:
+                    Options.getMetaDataMain(glossary);
                     break;
                 // get words in range
                 case 2:
