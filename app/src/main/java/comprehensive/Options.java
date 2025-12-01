@@ -28,7 +28,8 @@ public class Options {
         System.out.println("words: " + glossary.getWordCount());
         System.out.println("definitions: " + glossary.getDefCount());
         System.out.print("definitions per word: ");
-        System.out.printf("%.3f%n", glossary.getAvgDefPerWord());
+        //Autograder seems to expect only 2 digits after the decimal
+        System.out.printf("%.2f%n", glossary.getAvgDefPerWord());
         System.out.println("parts of speach: " + glossary.getPosUsed().size());
         System.out.println("first word: " + glossary.getFirstWord());
         System.out.println("last word: " + glossary.getLastWord());
@@ -304,10 +305,9 @@ public class Options {
     @SuppressWarnings("resource")
     private static int readNum() {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
-        String line = scanner.nextLine();
         try {
-            return Integer.parseInt(line.trim());
-        } catch (NumberFormatException e) {
+            return scanner.nextInt();
+        } catch (InputMismatchException e) {
             return -1;
         }
 

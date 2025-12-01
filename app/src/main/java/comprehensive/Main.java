@@ -71,10 +71,9 @@ public class Main {
     @SuppressWarnings("resource")
     private static int readNum() {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
-        String line = scanner.nextLine();
         try {
-            return Integer.parseInt(line.trim());
-        } catch (NumberFormatException e) {
+            return scanner.nextInt();
+        } catch (InputMismatchException e) {
             return -1;
         }
 
