@@ -35,6 +35,26 @@ public class Options {
     }
 
     /**
+     * Get the words from blank to blank inclusive 
+     * option 2
+     * @param glossary
+     */
+    public static void getWordsInRangeMain(Glossary glossary){
+        System.out.print("Starting word: ");
+        String word1 = readLine();
+        System.out.println("");
+        System.out.print("Ending word: ");
+        String word2 = readLine();
+        System.out.println("");
+        ArrayList<String> wordList = glossary.getWordsInRange(word1, word2);
+        System.out.println("The words between " + word1 + " and " + word2 + " are:");
+        for(String word : wordList){
+            System.out.println(word);
+        }
+        System.out.println("");
+    }
+
+    /**
      * Get a word from the user and return all wordjuice
      * Option 3
      * 
@@ -53,12 +73,43 @@ public class Options {
                     .thenComparing((WordJuice wj) -> wj.getDef()));
 
             // print
+            System.out.println(userWord);
             for (WordJuice wj : w) {
                 String pos = wj.getPos().toString().toLowerCase();
                 System.out.println(pos + ".  " + wj.getDef());
             }
 
-            // space line
+            System.out.println("");
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("userWord is not in the glossary!");
+        }
+    }
+
+    //4 5 are implemented in main in a few lines
+
+    /**
+     * Gets a word and returns just the POS
+     * option 6
+     * @param glossary
+     */
+    public static void getWordPosMain(Glossary glossary){
+        System.out.print("Select a word: ");
+        String userWord = readLine();
+        try {
+            // store the values
+            ArrayList<WordJuice> w = glossary.getWord(userWord);
+
+            // sort them by POS lexographically
+            w.sort(Comparator
+                    .comparing((WordJuice wj) -> wj.getPos().toString()));
+
+            // print
+            System.out.println(userWord);
+            for (WordJuice wj : w) {
+                String pos = wj.getPos().toString().toLowerCase();
+            }
+
             System.out.println("");
 
         } catch (IllegalArgumentException e) {

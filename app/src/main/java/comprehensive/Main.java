@@ -14,6 +14,7 @@ public class Main {
                     break;
                 // get words in range
                 case 2:
+                    Options.getWordsInRangeMain(glossary);
                     break;
                 // get word
                 case 3:
