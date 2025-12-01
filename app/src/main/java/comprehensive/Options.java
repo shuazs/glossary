@@ -2,7 +2,6 @@ package comprehensive;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.InputMismatchException;
 
 /**
  * The larger menu options will be implemented here to keep main.java clean
@@ -27,8 +26,8 @@ public class Options {
     public static void getMetaDataMain(Glossary glossary) {
         System.out.println("words: " + glossary.getWordCount());
         System.out.println("definitions: " + glossary.getDefCount());
-        System.out.print("definitions per word: ");
-        System.out.printf("%.3f%n", glossary.getAvgDefPerWord());
+        String adpw = String.format("%.3f", glossary.getAvgDefPerWord()); 
+        System.out.println("definitions per word: " + adpw);
         System.out.println("parts of speach: " + glossary.getPosUsed().size());
         System.out.println("first word: " + glossary.getFirstWord());
         System.out.println("last word: " + glossary.getLastWord());
@@ -220,7 +219,7 @@ public class Options {
                 int userNum = readNum();
                 userNum--;
                 if (userNum == -2) {
-                    System.out.print("Invalid Input: ");
+                    System.out.println("Invalid Input: ");
                     continue;
                 } else if (userNum < w.size() && userNum >= 0) {
                     if (glossary.deleteDef(userWord, userNum)) {
@@ -324,9 +323,10 @@ public class Options {
     @SuppressWarnings("resource")
     private static int readNum() {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
+        String line = scanner.nextLine();
         try {
-            return scanner.nextInt();
-        } catch (InputMismatchException e) {
+            return Integer.parseInt(line.trim());
+        } catch (NumberFormatException e) {
             return -1;
         }
 

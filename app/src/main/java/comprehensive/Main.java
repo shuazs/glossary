@@ -1,7 +1,5 @@
 package comprehensive;
 
-import java.util.InputMismatchException;
-
 public class Main {
     public static void main(String[] args) {
         Glossary glossary = new Glossary(args[0]);
@@ -71,9 +69,10 @@ public class Main {
     @SuppressWarnings("resource")
     private static int readNum() {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
+        String line = scanner.nextLine();
         try {
-            return scanner.nextInt();
-        } catch (InputMismatchException e) {
+            return Integer.parseInt(line.trim());
+        } catch (NumberFormatException e) {
             return -1;
         }
 
