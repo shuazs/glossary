@@ -44,10 +44,10 @@ public class Options {
      */
     static void getWordsInRangeMain(Glossary glossary) {
         System.out.print("Starting word: ");
-        String word1 = readLine();
+        String word1 = readLine().trim().toLowerCase();
         System.out.println("");
         System.out.print("Ending word: ");
-        String word2 = readLine();
+        String word2 = readLine().trim().toLowerCase();
         System.out.println("");
         try {
             ArrayList<String> wordList = glossary.getWordsInRange(word1, word2);
@@ -70,7 +70,7 @@ public class Options {
      */
     static void getWordMain(Glossary glossary) {
         System.out.print("Select a word: ");
-        String userWord = readLine();
+        String userWord = readLine().trim().toLowerCase();
         try {
             // store the values
             ArrayList<WordJuice> w = glossary.getWord(userWord);
@@ -105,7 +105,7 @@ public class Options {
      */
     static void getWordPosMain(Glossary glossary) {
         System.out.print("Select a word: ");
-        String userWord = readLine();
+        String userWord = readLine().trim().toLowerCase();
         try {
             // store the values
             ArrayList<WordJuice> w = glossary.getWord(userWord);
@@ -144,7 +144,7 @@ public class Options {
      */
     static void updateDefMain(Glossary glossary) {
         System.out.print("Select a word: ");
-        String userWord = readLine();
+        String userWord = readLine().trim().toLowerCase();
         try {
             ArrayList<WordJuice> w = glossary.getWord(userWord);
 
@@ -189,7 +189,7 @@ public class Options {
      */
     static void deleteDefMain(Glossary glossary) {
         System.out.print("Select a word: ");
-        String userWord = readLine();
+        String userWord = readLine().trim().toLowerCase();
         try {
             ArrayList<WordJuice> w = glossary.getWord(userWord);
 
@@ -238,7 +238,7 @@ public class Options {
         // txt to pos throws an error
         try {
             System.out.print("Type a word: ");
-            String word = readLine();
+            String word = readLine().trim().toLowerCase();
             System.out.println("Valid parts of speach: noun, verb, adj, pron, prep, conj, interj");
             System.out.print("Type a valid part of speach: ");
             String posString = readLine();

@@ -96,12 +96,16 @@ public class Glossary {
     // 4
     // Gets first word
     public String getFirstWord() {
+        //if empty return empty
+        if(glossary.isEmpty()){return "";}
         return glossary.firstKey();
     }
 
     // 5
     // Gets last word
     public String getLastWord() {
+        //if empty return empty
+        if(glossary.isEmpty()){return "";}
         return glossary.lastKey();
     }
 

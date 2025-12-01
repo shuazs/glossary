@@ -9,6 +9,7 @@ public class Main {
         while (running) {
             printMenu();
             int userIn = readNum();
+
             switch (userIn) {
                 // get metadata
                 case 1:
@@ -66,7 +67,6 @@ public class Main {
     private static int readNum() {
         // DON'T CLOSE SCANNER CAUSES BUGS
         java.util.Scanner scanner = new java.util.Scanner(System.in);
-
         try {
             return scanner.nextInt();
         } catch (InputMismatchException e) {
