@@ -12,7 +12,7 @@ import java.util.InputMismatchException;
  * @version 11/30/25
  */
 public class Options {
-    
+
     /**
      * Option 1
      * Words:
@@ -28,8 +28,7 @@ public class Options {
         System.out.println("words: " + glossary.getWordCount());
         System.out.println("definitions: " + glossary.getDefCount());
         System.out.print("definitions per word: ");
-        //Autograder seems to expect only 2 digits after the decimal
-        System.out.printf("%.2f%n", glossary.getAvgDefPerWord());
+        System.out.printf("%.3f%n", glossary.getAvgDefPerWord());
         System.out.println("parts of speach: " + glossary.getPosUsed().size());
         System.out.println("first word: " + glossary.getFirstWord());
         System.out.println("last word: " + glossary.getLastWord());
@@ -163,16 +162,23 @@ public class Options {
             }
             System.out.println(i + ". Back to main menu");
 
-            // get user option and if its out of range then it must be the exit option
-            System.out.print("Select an option: ");
-            int userNum = readNum();
-            userNum--;
-            if (userNum < w.size() && userNum >= 0) {
-                System.out.print("Type a new definition: ");
-                String newDef = readLine();
-                glossary.updateDef(userWord, userNum, newDef);
-            } else {
-                return;
+            // loop until user exits or has proper input
+            while (true) {
+                System.out.print("Select an option: ");
+                int userNum = readNum();
+                userNum--;
+                if (userNum == -2) {
+                    System.out.print("Invalid Input: ");
+                    continue;
+                } else if (userNum < w.size() && userNum >= 0) {
+                    System.out.print("Type a new definition: ");
+                    String newDef = readLine();
+                    glossary.updateDef(userWord, userNum, newDef);
+                    System.out.println("Changed!");
+                    return;
+                } else if (userNum == i - 1) {
+                    return;
+                }
             }
 
         } catch (IllegalArgumentException e) {
@@ -208,14 +214,22 @@ public class Options {
             }
             System.out.println(i + ". Back to main menu");
 
-            // get user option and if its out of range then it must be the exit option
-            System.out.print("Select an option: ");
-            int userNum = readNum();
-            userNum--;
-            if (userNum < w.size() && userNum >= 0) {
-                glossary.deleteDef(userWord, userNum);
-            } else {
-                return;
+            // loop until user exits or has proper input
+            while (true) {
+                System.out.print("Select an option: ");
+                int userNum = readNum();
+                userNum--;
+                if (userNum == -2) {
+                    System.out.print("Invalid Input: ");
+                    continue;
+                } else if (userNum < w.size() && userNum >= 0) {
+                    if (glossary.deleteDef(userWord, userNum)) {
+                        System.out.println(userWord + " removed");
+                    }
+                    return;
+                } else if (userNum == i - 1) {
+                    return;
+                }
             }
 
         } catch (IllegalArgumentException e) {
@@ -236,20 +250,25 @@ public class Options {
      */
     static void addDefMain(Glossary glossary) {
         // txt to pos throws an error
-        try {
-            System.out.print("Type a word: ");
-            String word = readLine();
-            System.out.println("Valid parts of speach: noun, verb, adj, pron, prep, conj, interj");
+        System.out.print("Type a word: ");
+        String word = readLine();
+        System.out.println("Valid parts of speach: noun, verb, adj, pron, prep, conj, interj");
+        while(true){
+            try {    
             System.out.print("Type a valid part of speach: ");
             String posString = readLine();
             POS pos = POS.txtToPOS(posString);
             System.out.print("Type a definition: ");
             String def = readLine();
             glossary.addDef(word, pos, def);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Invalid POS. Return to main menu");
+            System.out.println("Succsesfully added!");
             return;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid POS");
+            continue;
         }
+        }
+        
     }
 
     /**

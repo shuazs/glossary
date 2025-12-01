@@ -60,16 +60,18 @@ public class Glossary {
     }
 
     // delete def for option 8
-    public void deleteDef(String word, int index) {
+    public boolean deleteDef(String word, int index) {
         ArrayList<WordJuice> w = glossary.get(word);
         w.remove(index);
         this.definitionCount--;
         if (w.size() == 0) {
             glossary.remove(word);
             this.wordCount--;
+            return true;
         }
 
         computePosUsed();
+        return false;
     }
 
     // 3
