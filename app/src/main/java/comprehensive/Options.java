@@ -12,7 +12,7 @@ import java.util.InputMismatchException;
  * @version 11/30/25
  */
 public class Options {
-
+    
     /**
      * Option 1
      * Words:
@@ -24,12 +24,11 @@ public class Options {
      * 
      * @param glossary
      */
-    static void getMetaDataMain(Glossary glossary) {
+    public static void getMetaDataMain(Glossary glossary) {
         System.out.println("words: " + glossary.getWordCount());
         System.out.println("definitions: " + glossary.getDefCount());
         System.out.print("definitions per word: ");
-        System.out.printf("%.3f", glossary.getAvgDefPerWord());
-        System.out.println("");
+        System.out.printf("%.3f%n", glossary.getAvgDefPerWord());
         System.out.println("parts of speach: " + glossary.getPosUsed().size());
         System.out.println("first word: " + glossary.getFirstWord());
         System.out.println("last word: " + glossary.getLastWord());
@@ -44,10 +43,10 @@ public class Options {
      */
     static void getWordsInRangeMain(Glossary glossary) {
         System.out.print("Starting word: ");
-        String word1 = readLine().trim().toLowerCase();
+        String word1 = readLine();
         System.out.println("");
         System.out.print("Ending word: ");
-        String word2 = readLine().trim().toLowerCase();
+        String word2 = readLine();
         System.out.println("");
         try {
             ArrayList<String> wordList = glossary.getWordsInRange(word1, word2);
@@ -70,7 +69,7 @@ public class Options {
      */
     static void getWordMain(Glossary glossary) {
         System.out.print("Select a word: ");
-        String userWord = readLine().trim().toLowerCase();
+        String userWord = readLine();
         try {
             // store the values
             ArrayList<WordJuice> w = glossary.getWord(userWord);
@@ -105,7 +104,7 @@ public class Options {
      */
     static void getWordPosMain(Glossary glossary) {
         System.out.print("Select a word: ");
-        String userWord = readLine().trim().toLowerCase();
+        String userWord = readLine();
         try {
             // store the values
             ArrayList<WordJuice> w = glossary.getWord(userWord);
@@ -144,7 +143,7 @@ public class Options {
      */
     static void updateDefMain(Glossary glossary) {
         System.out.print("Select a word: ");
-        String userWord = readLine().trim().toLowerCase();
+        String userWord = readLine();
         try {
             ArrayList<WordJuice> w = glossary.getWord(userWord);
 
@@ -189,7 +188,7 @@ public class Options {
      */
     static void deleteDefMain(Glossary glossary) {
         System.out.print("Select a word: ");
-        String userWord = readLine().trim().toLowerCase();
+        String userWord = readLine();
         try {
             ArrayList<WordJuice> w = glossary.getWord(userWord);
 
@@ -238,7 +237,7 @@ public class Options {
         // txt to pos throws an error
         try {
             System.out.print("Type a word: ");
-            String word = readLine().trim().toLowerCase();
+            String word = readLine();
             System.out.println("Valid parts of speach: noun, verb, adj, pron, prep, conj, interj");
             System.out.print("Type a valid part of speach: ");
             String posString = readLine();
@@ -304,12 +303,11 @@ public class Options {
     // helper to get and read user inputs as ints
     @SuppressWarnings("resource")
     private static int readNum() {
-        // DON'T CLOSE SCANNER CAUSES BUGS
         java.util.Scanner scanner = new java.util.Scanner(System.in);
-
+        String line = scanner.nextLine();
         try {
-            return scanner.nextInt();
-        } catch (InputMismatchException e) {
+            return Integer.parseInt(line.trim());
+        } catch (NumberFormatException e) {
             return -1;
         }
 

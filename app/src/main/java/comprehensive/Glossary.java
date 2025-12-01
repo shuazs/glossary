@@ -119,11 +119,11 @@ public class Glossary {
         return this.definitionCount;
     }
 
-    public float getAvgDefPerWord() {
+    public double getAvgDefPerWord() {
         if (wordCount == 0) {
-            return 0;
+            return 0.000;
         }
-        return (float) this.definitionCount / this.wordCount;
+        return (double) this.definitionCount / this.wordCount;
     }
 
     public HashSet<POS> getPosUsed() {

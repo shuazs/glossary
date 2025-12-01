@@ -10,6 +10,11 @@ public class Main {
             printMenu();
             int userIn = readNum();
 
+            if (userIn == -1) {
+                System.out.println("Invalid input");
+                continue;
+            }
+
             switch (userIn) {
                 // get metadata
                 case 1:
@@ -65,11 +70,11 @@ public class Main {
     // helper to get and read user inputs as ints
     @SuppressWarnings("resource")
     private static int readNum() {
-        // DON'T CLOSE SCANNER CAUSES BUGS
         java.util.Scanner scanner = new java.util.Scanner(System.in);
+        String line = scanner.nextLine();
         try {
-            return scanner.nextInt();
-        } catch (InputMismatchException e) {
+            return Integer.parseInt(line.trim());
+        } catch (NumberFormatException e) {
             return -1;
         }
 
