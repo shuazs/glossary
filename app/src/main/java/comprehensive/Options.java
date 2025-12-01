@@ -167,7 +167,7 @@ public class Options {
                 int userNum = readNum();
                 userNum--;
                 if (userNum == -2) {
-                    System.out.print("Invalid Input: ");
+                    System.out.print("Invalid Input ");
                     continue;
                 } else if (userNum < w.size() && userNum >= 0) {
                     System.out.print("Type a new definition: ");
@@ -219,7 +219,7 @@ public class Options {
                 int userNum = readNum();
                 userNum--;
                 if (userNum == -2) {
-                    System.out.println("Invalid Input: ");
+                    System.out.println("Invalid Input ");
                     continue;
                 } else if (userNum < w.size() && userNum >= 0) {
                     if (glossary.deleteDef(userWord, userNum)) {
