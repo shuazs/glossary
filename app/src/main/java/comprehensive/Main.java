@@ -1,5 +1,7 @@
 package comprehensive;
 
+import java.util.InputMismatchException;
+
 public class Main {
     public static void main(String[] args) {
         Glossary glossary = new Glossary(args[0]);
@@ -22,14 +24,11 @@ public class Main {
                     break;
                 // get first word
                 case 4:
-                    System.out.println(glossary.getFirstWord());
                     Options.getWordMain(glossary, glossary.getFirstWord());
                     break;
                 // get last word
                 case 5:
-                    String lastWord = glossary.getLastWord();
-                    System.out.println(lastWord);
-                    Options.getWordMain(glossary, lastWord);
+                    Options.getWordMain(glossary, glossary.getLastWord());
                     break;
                 // get parts of speach
                 case 6:
@@ -62,15 +61,19 @@ public class Main {
         }
     }
 
-    //TODO: Handle invalid inputs!
+    
     // helper to get and read user inputs as ints
     @SuppressWarnings("resource")
     private static int readNum() {
         // DON'T CLOSE SCANNER CAUSES BUGS
         java.util.Scanner scanner = new java.util.Scanner(System.in);
-        int num = scanner.nextInt();
-        System.out.println("");
-        return num;
+        
+        try{
+            return scanner.nextInt();
+        }catch(InputMismatchException e){
+            return -1;
+        }
+        
     }
 
     // menu

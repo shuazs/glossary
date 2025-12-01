@@ -1,9 +1,8 @@
 package comprehensive;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Set;
+import java.util.InputMismatchException;
 
 /**
  * The larger menu options will be implemented here to keep main.java clean
@@ -49,12 +48,17 @@ public class Options {
         System.out.print("Ending word: ");
         String word2 = readLine();
         System.out.println("");
-        ArrayList<String> wordList = glossary.getWordsInRange(word1, word2);
-        System.out.println("The words between " + word1 + " and " + word2 + " are:");
-        for (String word : wordList) {
-            System.out.println(word);
+        try{
+            ArrayList<String> wordList = glossary.getWordsInRange(word1, word2);
+            System.out.println("The words between " + word1 + " and " + word2 + " are:");
+            for (String word : wordList) {
+                System.out.println(word);
+            }
+            System.out.println("");
+        }catch(IllegalArgumentException e){
+            System.out.println("The starting word must come before than the ending word");
         }
-        System.out.println("");
+        
     }
 
     /**
@@ -86,7 +90,7 @@ public class Options {
             System.out.println("");
 
         } catch (IllegalArgumentException e) {
-            System.out.println("userWord is not in the glossary!");
+            System.out.println("Word is not in the glossary!");
         }
     }
 
@@ -292,20 +296,21 @@ public class Options {
     private static String readLine() {
         // DON'T CLOSE SCANNER CAUSES BUGS
         java.util.Scanner scanner = new java.util.Scanner(System.in);
-        String line = scanner.nextLine();
-        System.out.println("");
-        return line;
-
+        return scanner.nextLine();
     }
 
-    // TODO: Handle invalid inputs!
+    
     // helper to get and read user inputs as ints
     @SuppressWarnings("resource")
     private static int readNum() {
         // DON'T CLOSE SCANNER CAUSES BUGS
         java.util.Scanner scanner = new java.util.Scanner(System.in);
-        int num = scanner.nextInt();
-        System.out.println("");
-        return num;
+        
+        try{
+            return scanner.nextInt();
+        }catch(InputMismatchException e){
+            return -1;
+        }
+        
     }
 }

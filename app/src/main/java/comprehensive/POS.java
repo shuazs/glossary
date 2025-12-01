@@ -33,7 +33,6 @@ public enum POS {
                 return POS.INTERJ;
                 default:
                 throw new IllegalArgumentException("The POS is not a valid POS!");
-                //TODO: handle this exception in main 
         }
 
     }
