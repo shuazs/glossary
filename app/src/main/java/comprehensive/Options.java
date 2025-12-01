@@ -7,6 +7,7 @@ import java.util.InputMismatchException;
 /**
  * The larger menu options will be implemented here to keep main.java clean
  * All option methods are private or package private
+ * 
  * @author Joshua Varughese
  * @version 11/30/25
  */
@@ -48,17 +49,17 @@ public class Options {
         System.out.print("Ending word: ");
         String word2 = readLine();
         System.out.println("");
-        try{
+        try {
             ArrayList<String> wordList = glossary.getWordsInRange(word1, word2);
             System.out.println("The words between " + word1 + " and " + word2 + " are:");
             for (String word : wordList) {
                 System.out.println(word);
             }
             System.out.println("");
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println("The starting word must come before than the ending word");
         }
-        
+
     }
 
     /**
@@ -234,7 +235,7 @@ public class Options {
      * @param glossary
      */
     static void addDefMain(Glossary glossary) {
-        //txt to pos throws an error
+        // txt to pos throws an error
         try {
             System.out.print("Type a word: ");
             String word = readLine();
@@ -253,10 +254,11 @@ public class Options {
 
     /**
      * Option 10 write to the file
+     * 
      * @param glossary
      * 
      */
-    static void saveMain(Glossary glossary){
+    static void saveMain(Glossary glossary) {
         System.out.print("Enter filename with path: ");
         String file = readLine();
         FileLoader.unload(file, glossary);
@@ -299,18 +301,17 @@ public class Options {
         return scanner.nextLine();
     }
 
-    
     // helper to get and read user inputs as ints
     @SuppressWarnings("resource")
     private static int readNum() {
         // DON'T CLOSE SCANNER CAUSES BUGS
         java.util.Scanner scanner = new java.util.Scanner(System.in);
-        
-        try{
+
+        try {
             return scanner.nextInt();
-        }catch(InputMismatchException e){
+        } catch (InputMismatchException e) {
             return -1;
         }
-        
+
     }
 }

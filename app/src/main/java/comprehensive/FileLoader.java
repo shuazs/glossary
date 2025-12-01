@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 /**
  * Reads the text file and turns it into a glossary
+ * or
+ * Turns a glossary into a text file
  * 
  * @author Joshua Varughese
  * @version 11/29/25

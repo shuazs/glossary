@@ -1,16 +1,17 @@
 package comprehensive;
+
 /**
  * THE POS as an ENUM
+ * 
  * @author Joshua Varughese
  * @version 11/29/25
  */
 public enum POS {
     NOUN, VERB, ADJ, ADV, PRON, PREP, CONJ, INTERJ;
 
-
-    //Helper method to turn a string into an POS
-    public static POS txtToPOS(String txt){
-        if(txt == null){
+    // Helper method to turn a string into an POS
+    public static POS txtToPOS(String txt) {
+        if (txt == null) {
             throw new IllegalArgumentException("Txt was null!");
         }
         txt = txt.toUpperCase();
@@ -31,7 +32,7 @@ public enum POS {
                 return POS.CONJ;
             case "INTERJ":
                 return POS.INTERJ;
-                default:
+            default:
                 throw new IllegalArgumentException("The POS is not a valid POS!");
         }
 

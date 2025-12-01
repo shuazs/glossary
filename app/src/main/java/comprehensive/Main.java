@@ -61,19 +61,18 @@ public class Main {
         }
     }
 
-    
     // helper to get and read user inputs as ints
     @SuppressWarnings("resource")
     private static int readNum() {
         // DON'T CLOSE SCANNER CAUSES BUGS
         java.util.Scanner scanner = new java.util.Scanner(System.in);
-        
-        try{
+
+        try {
             return scanner.nextInt();
-        }catch(InputMismatchException e){
+        } catch (InputMismatchException e) {
             return -1;
         }
-        
+
     }
 
     // menu
